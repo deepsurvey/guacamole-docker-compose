@@ -34,7 +34,7 @@
 #
 #  !!!!! MAKE SURE your folder './init' is executable (chmod +x ./init)
 #  !!!!! or 'initdb.sql' will be ignored!
-#  
+#
 #  './data' will hold all data after first start!
 #
 # (2)
@@ -123,12 +123,15 @@ services:
     - guacd
     - postgres
     environment:
+      GUACAMOLE_HOME: /opt/local
       GUACD_HOSTNAME: guacd
       POSTGRES_DATABASE: guacamole_db
       POSTGRES_HOSTNAME: postgres
       POSTGRES_PASSWORD: ChooseYourOwnPasswordHere1234
       POSTGRES_USER: guacamole_user
     image: guacamole/guacamole
+    volumes:
+    - ./var/lib/docker/custom/guacamole:/opt/local
     links:
     - guacd
     networks:
@@ -139,6 +142,7 @@ services:
 ## enable next line when using nginx
     - 8080/tcp
     restart: always
+
 
 ########### optional ##############
   # nginx
