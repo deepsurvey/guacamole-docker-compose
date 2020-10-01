@@ -131,7 +131,7 @@ services:
       POSTGRES_USER: guacamole_user
     image: guacamole/guacamole
     volumes:
-    - ./var/lib/docker/custom/guacamole:/opt/local
+    - ./guacamole:/opt/local
     links:
     - guacd
     networks:
